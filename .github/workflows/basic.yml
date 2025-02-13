@@ -60,6 +60,8 @@ jobs:
       - name: look at pkgs
         run: (Rscript -e 'print(sort(rownames(installed.packages())))')
       - name: additional latex packages
-        run: (Rscript -e "tinytex::tlmgr_install('pdfpages')")
+        run: |
+          (Rscript -e "tinytex::tlmgr_install('pdfpages')")
+          (Rscript -e "tinytex::tlmgr_install('pdflscape')")
       - name: do r cmd check
         run: (Rscript -e "rcmdcheck::rcmdcheck()")
