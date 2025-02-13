@@ -57,6 +57,10 @@ jobs:
         run: (cat DESCRIPTION)
       - name: get dependencies
         run: (Rscript -e "BiocManager::install(basename(getwd()), ref='RELEASE_3_20', dependencies=TRUE, update=FALSE, Ncpus=2)")
+      - name: additional packages not handled by BiocManager?
+      - run: |
+          (Rscript -e "BiocManager::install(c('BiasedUrn', 'ellipse', 'gplots', 'locfit', 'affy', 'AnnotationDbi',
+              'GO.db', 'illuminaio', 'org.Hs.eg.db', 'vsn'), type='source')")
       - name: look at pkgs
         run: (Rscript -e 'print(sort(rownames(installed.packages())))')
       - name: additional latex packages
