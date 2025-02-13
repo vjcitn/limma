@@ -59,5 +59,7 @@ jobs:
         run: (Rscript -e "BiocManager::install(basename(getwd()), ref='RELEASE_3_20', dependencies=TRUE, update=FALSE, Ncpus=2)")
       - name: look at pkgs
         run: (Rscript -e 'print(sort(rownames(installed.packages())))')
+      - name: additional latex packages
+        run: (Rscript -e "tinytex::tlmgr_install('pdfpages')")
       - name: do r cmd check
         run: (Rscript -e "rcmdcheck::rcmdcheck()")
